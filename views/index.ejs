@@ -1,0 +1,75 @@
+<% include header %>
+
+<% if ( museum ) { %>
+	<div class="slider">
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<% for (var i = 0; i < museum.length; i++) { %>
+					<li data-target="#carousel-example-generic" data-slide-to="<%= i %>" <% if (i == 0) { %> class="active" <% } %>></li>
+				<% } %>
+			</ol>
+
+			<div class="carousel-inner" role="listbox">
+				<% for (var i = 0; i < museum.length; i++) { %>
+					<div class="item <% if (i == 0) { %> active <% } %>">
+						<img src="img/<%= museum[i].img %>" alt="museum">
+						<div class="carousel-caption">
+							<div class="slider-link"><a href="/museum/<%= museum[i].alias %>/"><%= museum[i].name %></a></div>
+						</div>
+					</div>
+				<% } %>
+			</div>
+
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				<span class="icon-prev" aria-hidden="true"></span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				<span class="icon-next" aria-hidden="true"></span>
+			</a>
+		</div>
+	</div>
+<% } %>
+
+<div class="about">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 bg-img"></div>
+			<div class="col-md-6 bg-black">
+				<div class="about-text">
+					<h4 class="ttl2 sep left">О проекте</h4>
+					<%- text %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if ( gallery ) { %>
+	<div class="gallery">
+		<div class="container">
+			<h2 class="ttl sep">Галерея</h2>
+			<div class="row">
+				<% for (var i = 0; i < gallery.length; i++) { %>
+					<div class="col-md-4">
+						<div class="gallery-item">
+							<img src="img/<%= gallery[i].img %>" alt="<%= gallery[i].name %>">
+							<div class="gallery-descr">
+								<p><%= gallery[i].name %></p>
+								<span><%= gallery[i].artist %></span>
+							</div>
+							<a href="/gallery/<%= gallery[i].alias %>/" class="gallery-link">Перейти</a>
+							<a href="/museum/<%= gallery[i].m_alias %>/" class="gallery-museum"><%= gallery[i].m_name %></a>
+							<i></i>
+						</div>
+					</div>
+				<% } %>
+			</div>
+			<a href="/gallery/" class="more">Больше картин</a>
+		</div>
+	</div>
+<% } %>
+
+<div class="ttl sep">Мы на карте</div>
+<div class="map" id="map"></div>
+
+<% include footer %>

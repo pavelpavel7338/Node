@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Gallery Pavlo</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<main>
+		<header>
+			<div class="top-bar">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-7 col-md-push-3 bg-black cut cut-left">
+							<div class="pavlo top-bar-txt">Курсовой проект Павла Мягкова, 31КН, ТГАТУ</div>
+						</div>
+						<div class="col-md-2 col-md-push-3 bg-orange cut cut-right">
+							<div class="tel top-bar-txt">+38 096 215 40 55</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<nav class="top-menu">
+				<div class="container">
+					<div class="logo pull-left">
+						<a href="/">
+							<img src="/img/logo.png" alt="logo">
+						</a>
+					</div>
+					<div class="pull-right">
+						<ul>
+							<li><a href="/">Главная</a></li>
+							<li><a href="/museum/">Музеи</a></li>
+							<li><a href="/gallery/">Галерея</a></li>
+							<% if ( auth !== 0 ) { %>
+								<li><a href="/exit/"><%= auth %> (выход)</a></li>
+							<% } else { %>
+								<li><a href="/auth/">Вход</a></li>
+							<% } %>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Gallery Pavlo</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/common.js"></script>
+</head>
+<body>
+<main>
+	<div class="container">
+		<h1 align="center">Панель Администратора</h1><br>
+		<strong>Список Картин</strong>
+		<ul>
+			<% for (var i = 0; i < gallery.length; i++) { %>
+				<li style="border-bottom: 1px solid;">
+					<span style="display: inline-block; width: 50%;"><a href="/gallery/<%= gallery[i].alias %>/" target="_blank"><b><%= gallery[i].name %></b></a></span>
+					<a href="#" class="admin-edit">Редактировать</a> |
+					<a href="#<%= gallery[i].id %>" class="admin-delete">Удалить</a>
+				</li>
+				<li style="list-style: none; display: none;">
+					<form action="/admin-upd/" method="post" enctype="multipart/form-data" style="max-width: 300px;">
+						<br><input type="text" name="g_name" placeholder="Название" class="form-control" value="<%= gallery[i].name %>"><br>
+						<label class="btn btn-default btn-file" for="file-gal"><input type="file" name="g_img" value="<%= gallery[i].img %>" id="file-gal" style="display: none;" onchange="$('#upload-file-gal').html($(this).val());">Картина</label> <span class='label label-info' id="upload-file-gal"><%= gallery[i].img %></span><br><br>
+						<select class="form-control" name="g_museum">
+							<option disabled>Музей</option>
+							<% for (var j = 0; j < museum.length; j++) { %>
+								<% if ( museum[j].id === gallery[i].m_id ) { %>
+									<option value="<%= museum[j].id %>" selected><%= museum[j].name %></option>
+								<% } else { %>
+									<option value="<%= museum[j].id %>"><%= museum[j].name %></option>
+								<% } %>
+							<% } %>
+						</select><br>
+						<input type="text" name="g_price" placeholder="Цена" class="form-control" value="<%= gallery[i].price %>"><br>
+						<input type="text" name="g_artist" placeholder="Художник" class="form-control" value="<%= gallery[i].artist %>"><br>
+						<input type="text" name="g_alias" placeholder="URL" class="form-control" value="<%= gallery[i].alias %>"><br>
+						<input type="hidden" name="g_id" value="<%= gallery[i].id %>">
+						<button type="submit" class="btn btn-primary">Отправить</button><br><br>
+					</form>
+				</li>
+			<% } %>
+		</ul>
+		<br><br>
+		<p><strong>Добавить Картину</strong></p>
+		<div class="row">
+			<div class="col-md-4">
+				<form method="post" enctype="multipart/form-data">
+					<input type="text" name="g_name" placeholder="Название" class="form-control" required><br>
+					
+					<label class="btn btn-default btn-file" for="file-selector"><input type="file" name="g_img" id="file-selector" style="display: none;" onchange="$('#upload-file-info').html($(this).val());" required>Картина</label> <span class='label label-info' id="upload-file-info"></span><br><br>
+					
+					<select class="form-control" name="g_museum" required>
+						<option disabled selected>Музей</option>
+						<% for (var i = 0; i < museum.length; i++) { %>
+							<option value="<%= museum[i].id %>"><%= museum[i].name %></option>
+						<% } %>
+					</select><br>
+
+					<input type="text" name="g_price" placeholder="Цена" class="form-control" required><br>
+					<input type="text" name="g_artist" placeholder="Художник" class="form-control" required><br>
+					<input type="text" name="g_alias" placeholder="URL" class="form-control" required><br>
+					<button type="submit" class="btn btn-primary">Отправить</button>
+				</form>
+			</div>
+		</div>
+	</div><br><br><br><br>
+</main>
+</body>
+</html>

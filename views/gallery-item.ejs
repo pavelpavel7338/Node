@@ -1,0 +1,42 @@
+<% include header %>
+
+<% if ( gallery ) { %>
+	<div class="container gallery-item-page">
+		<br><h1 class="ttl sep"><%= gallery.name %></h1>
+		<h3><u>Художник:</u> <%= gallery.artist %></h3>
+		<h3><u>Музей:</u> <a href="/museum/<%= museum.alias %>"><%= museum.name %></a></h3>
+		<img src="/img/<%= gallery.img %>" alt="<%= gallery.name %>">
+		<br><br>
+
+		<a href="/buy/?id=<%= gallery.id %>" class="gallery-buy1">Купить копию этой картины за <%= gallery.price %></a>
+		<a href="/buy/?id=<%= gallery.id %>" class="gallery-buy2">Купить копию этой картины за <%= gallery.price %></a>
+
+		<h4 class="ttl2 sep" id="c">Комментарии</h4>
+		<% if ( auth !== 0 ) { %>
+			<div class="comments">
+				<form method="post">
+					<input type="text" name="c_name" placeholder="Имя">
+					<textarea name="c_msg" placeholder="Сообщение"></textarea>
+					<input type="hidden" name="p_id" value="<%= gallery.id %>">
+					<input type="hidden" name="museum_gallery" value="2">
+					<button type="submit">Отправить</button>
+				</form>
+				<% if ( comments ) { %>
+					<ul class="comments-list">
+						<% for (var i = 0; i < comments.length; i++) { %>
+							<li>
+								<h6><%= comments[i].name %></h6>
+								<p><%- comments[i].msg %></p>
+							</li>
+						<% } %>
+					</ul>
+				<% } %>
+			</div>
+		<% } else { %>
+			<p class="noauth">Чтобы получить доступ к комментариям, выполните <a href="/auth/">вход</a>.</p>
+		<% } %>
+	</div>
+	<br><br><br>
+<% } %>
+
+<% include footer %>

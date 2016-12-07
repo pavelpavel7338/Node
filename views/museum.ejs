@@ -1,0 +1,16 @@
+<% include header %>
+
+<% if ( museum ) { %>
+	<div class="container">
+		<br><h1 class="ttl sep">Музеи</h1><br>
+		<% for (var i = 0; i < museum.length; i++) { %>
+			<a href="<%= museum[i].alias %>/" class="museum-item">
+				<h4 class="ttl2 sep"><%= museum[i].name %></h4>
+				<span><%= museum[i].descr %></span>
+				<img src="/img/<%= museum[i].img %>" alt="museum">
+			</a>
+		<% } %>
+	</div>
+<% } %>
+
+<% include footer %>

@@ -1,0 +1,26 @@
+<% include header %>
+
+<% if ( gallery ) { %>
+	<div class="container">
+		<br><h1 class="ttl sep">Галерея</h1><br>
+		<div class="row">
+			<% for (var i = 0; i < gallery.length; i++) { %>
+				<div class="col-md-4">
+					<div class="gallery-item">
+						<img src="/img/<%= gallery[i].img %>" alt="<%= gallery[i].name %>">
+						<div class="gallery-descr">
+							<p><%= gallery[i].name %></p>
+							<span><%= gallery[i].artist %></span>
+						</div>
+						<a href="/gallery/<%= gallery[i].alias %>/" class="gallery-link">Перейти</a>
+						<a href="/museum/<%= gallery[i].m_alias %>/" class="gallery-museum"><%= gallery[i].m_name %></a>
+						<i></i>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</div>
+	<br><br><br>
+<% } %>
+
+<% include footer %>

@@ -1,0 +1,34 @@
+<% include header %>
+
+<div class="container auth-page"><br>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="log">
+				<h2 class="ttl sep">Вход</h2>
+				<div class="comments">
+					<form action="/log/" method="post">
+						<input type="text" name="u_login" placeholder="Имя пользователя">
+						<input type="password" name="u_password" placeholder="Пароль">
+						<button type="submit">Войти</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="reg">
+				<h2 class="ttl sep">Регистрация</h2>
+				<div class="comments">
+					<form action="/reg/" method="post">
+						<input type="text" name="u_login" placeholder="Имя пользователя">
+						<input type="password" name="u_password1" placeholder="Пароль">
+						<input type="password" name="u_password2" placeholder="Пароль снова">
+						<button type="submit">Зарегистрироваться</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br><br><br>
+
+<% include footer %>

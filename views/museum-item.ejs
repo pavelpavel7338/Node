@@ -1,0 +1,55 @@
+<% include header %>
+
+<% if ( museum ) { %>
+	<div class="container museum-item-page">
+		<br><h1 class="ttl sep"><%= museum.name %></h1>
+		<img src="/img/<%= museum.img %>" alt="<%= museum.name %>"><br><br>
+		<div class="museum-text"><%- museum.text %></div>
+		<br>
+		<% if ( gallery ) { %>
+			<h4 class="ttl2 sep">Галерея</h4>
+			<div class="row">
+				<% for (var i = 0; i < gallery.length; i++) { %>
+					<div class="col-md-4">
+						<div class="gallery-item">
+							<img src="/img/<%= gallery[i].img %>" alt="<%= gallery[i].name %>">
+							<div class="gallery-descr">
+								<p><%= gallery[i].name %></p>
+								<span><%= gallery[i].artist %></span>
+							</div>
+							<a href="/gallery/<%= gallery[i].alias %>/" class="gallery-link">Перейти</a>
+							<i></i>
+						</div>
+					</div>
+				<% } %>
+			</div>
+		<% } %>
+		<h4 class="ttl2 sep" id="c">Комментарии</h4>
+		<% if ( auth !== 0 ) { %>
+			<div class="comments">
+				<form method="post">
+					<input type="text" name="c_name" placeholder="Имя">
+					<textarea name="c_msg" placeholder="Сообщение"></textarea>
+					<input type="hidden" name="p_id" value="<%= museum.id %>">
+					<input type="hidden" name="museum_gallery" value="1">
+					<button type="submit">Отправить</button>
+				</form>
+				<% if ( comments ) { %>
+					<ul class="comments-list">
+						<% for (var i = 0; i < comments.length; i++) { %>
+							<li>
+								<h6><%= comments[i].name %></h6>
+								<p><%- comments[i].msg %></p>
+							</li>
+						<% } %>
+					</ul>
+				<% } %>
+			</div>
+		<% } else { %>
+			<p class="noauth">Чтобы получить доступ к комментариям, выполните <a href="/auth/">вход</a>.</p>
+		<% } %>
+	</div>
+	<br><br><br>
+<% } %>
+
+<% include footer %>

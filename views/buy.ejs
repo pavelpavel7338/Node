@@ -1,0 +1,21 @@
+<% include header %>
+
+<% if ( gallery ) { %>
+	<div class="container buy-page">
+		<br><h1 class="ttl sep">Оформление заказа</h1>
+		<h3>Вы покупаете картину <strong><%= gallery.name %></strong> за <strong><%= gallery.price %></strong></h3>
+		<div class="comments">
+			<form action="/buy/" method="post">
+				<input type="text" name="b_name" placeholder="Имя">
+				<input type="text" name="b_email" placeholder="Email">
+				<input type="text" name="b_tel" placeholder="Телефон">
+				<input type="text" name="b_addr" placeholder="Адрес">
+				<input type="hidden" name="b_id" value="<%= gallery.id %>">
+				<button type="submit">Заказать</button>
+			</form>
+		</div>
+	</div>
+	<br><br><br>
+<% } %>
+
+<% include footer %>
